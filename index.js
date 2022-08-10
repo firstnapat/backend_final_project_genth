@@ -21,10 +21,6 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.get("/", (req, res, next) => {
-  res.send("test");
-});
-
 // /activities
 const activityRoutes = require("./Routes/activitiesRoute");
 app.use("/activities", activityRoutes);
