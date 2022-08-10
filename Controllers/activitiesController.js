@@ -1,4 +1,4 @@
-const Activities = require("../activitiesModel");
+const Activities = require("../Model/activitiesModel");
 
 const { v4: uuidv4 } = require("uuid");
 
@@ -13,7 +13,7 @@ const getActivityById = async (req, res, next) => {
   res.send(req.activity);
 };
 
-const User = require("../userModel");
+const User = require("../Model/userModel");
 
 const createActivity = async (req, res, next) => {
   const user = await User.findOne({

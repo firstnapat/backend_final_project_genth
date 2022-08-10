@@ -25,11 +25,11 @@ app.get("/", (req, res, next) => {
 });
 
 // /activities
-const activityRoutes = require("./routes/activitiesRoute");
+const activityRoutes = require("./Routes/activitiesRoute");
 app.use("/activities", activityRoutes);
 
 // /users
-const userRoutes = require("./routes/userRoute");
+const userRoutes = require("./Routes/userRoute");
 app.use("/users", userRoutes);
 
 const PORT = process.env.PORT || 3000;

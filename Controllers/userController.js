@@ -1,4 +1,4 @@
-const User = require("../userModel");
+const User = require("../Model/userModel");
 
 const { v4: uuidv4 } = require("uuid");
 

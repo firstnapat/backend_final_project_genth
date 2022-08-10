@@ -4,7 +4,7 @@ const activityRoutes = express.Router();
 
 const Activities = require("../Model/activitiesModel");
 
-const activitiesController = require("../Model/Controllers/activitiesController");
+const activitiesController = require("../Controllers/activitiesController");
 
 activityRoutes.param("activity_id", async (req, res, next, activity_id) => {
   const activity = await Activities.findOne({
