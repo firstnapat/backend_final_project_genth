@@ -5,10 +5,17 @@ const activitiesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    required: true,
+    type: String,
+    unique: true,
+    trim: true,
+    minlength: 3,
+  },
   activity_type: {
     required: true,
     type: String,
-    enum: ["cadio", "weige"],
+    enum: ["Running", "Swimming", "Weigth training"],
   },
   date: {
     type: Date,
@@ -19,6 +26,8 @@ const activitiesSchema = new mongoose.Schema({
     required: true,
   },
   comment: String,
+}, {
+  timestamps: true,
 });
 
 const activitiesModel = new mongoose.model("Activities", activitiesSchema);

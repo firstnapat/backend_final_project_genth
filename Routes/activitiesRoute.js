@@ -2,7 +2,7 @@ const express = require("express");
 
 const activityRoutes = express.Router();
 
-const Activities = require("../Model/activitiesModel");
+const Activities = require("../Models/activitiesModel");
 
 const activitiesController = require("../Controllers/activitiesController");
 

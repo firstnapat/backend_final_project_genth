@@ -1,18 +1,19 @@
 const express = require("express");
 const app = express();
-
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+// Read .env file
 require("dotenv").config();
-
-const mongoose = require("mongoose");
 
 app.use(async (req, res, next) => {
   try {
+    // process.env : read environment variables
     await mongoose.connect(process.env.MONGO_DB_URI);
+    console.log('Connected to MongoDB')
     next();
   } catch (error) {
     console.log(error);
