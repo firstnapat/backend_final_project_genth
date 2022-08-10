@@ -9,7 +9,7 @@ const activitiesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username_id: {
+  user_id: {
     type: String,
   },
   activity_type: {

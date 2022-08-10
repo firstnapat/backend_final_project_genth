@@ -21,7 +21,7 @@ const createActivity = async (req, res, next) => {
     const newActivity = new Activities({
       activity_id: uuidv4(),
       username: user.username,
-      username_id: user._id,
+      user_id: user.user_id,
       ...req.body,
     });
     await newActivity.save();
