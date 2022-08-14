@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const activitiesSchema = new mongoose.Schema({
+  img:
+  {
+    data: Buffer,
+    contentType: String
+  },
   activity_id: {
     type: String,
     required: true,
@@ -15,7 +20,7 @@ const activitiesSchema = new mongoose.Schema({
   activity_type: {
     required: true,
     type: String,
-    enum: ["Running", "Swimming", "Weigth training"],
+    enum: ["Running", "Cycling", "Swimming", "Weight training", "Walking"],
   },
   title: {
     required: true,
@@ -25,8 +30,12 @@ const activitiesSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  duration: {
-    type: Number,
+  start_time: {
+    type: Date,
+    required: true,
+  },
+  end_time: {
+    type: Date,
     required: true,
   },
   description: String,
