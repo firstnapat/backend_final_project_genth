@@ -31,20 +31,17 @@ const createActivity = async (req, res, next) => {
     "username": req.body.username,
   });
   try {
-    upload(req, res, () => {
-      const newActivity = new Activities({
-        img: {
-          data: req.file.filename,
-          contentType: 'image/png',
-        },
-        activity_id: uuidv4(),
-        username: user.username,
-        user_id: user.user_id,
-        ...req.body,
-      });
-      newActivity.save();
-      res.send(newActivity);
-    })
+    const newActivity = new Activities({
+      img: {
+        data: req.file.filename,
+        contentType: 'image/png',
+      },
+      activity_id: uuidv4(),
+      username: user.username,
+      user_id: user.user_id,
+      ...req.body,
+    });
+    await newActivity.save();
   } catch (error) {
     res.status(400).send(error);
     console.log(error);
