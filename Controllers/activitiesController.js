@@ -33,7 +33,7 @@ const createActivity = async (req, res, next) => {
   try {
     const newActivity = new Activities({
       img: {
-        data: req.file.filename,
+        data: req.files,
         contentType: 'image/png',
       },
       activity_id: uuidv4(),
