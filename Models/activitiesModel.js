@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
 
 const activitiesSchema = new mongoose.Schema({
-  img:
-  {
+  img: {
+    name: {
+      type: String,
+      required: true,
+    },
     data: Buffer,
     contentType: String
   },

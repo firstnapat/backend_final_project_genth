@@ -3,17 +3,19 @@ const Activities = require("../Models/activitiesModel");
 const { v4: uuidv4 } = require("uuid");
 
 const multer = require('multer')
+const fs = require('fs');
+const path = require('path');
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, 'uploads')
+  destination: function (req, file, cb) {
+    cb(null, 'public')
   },
   filename: (req, file, cb) => {
-      cb(null, file.fieldname + '-' + Date.now())
+    cb(null, Date.now() + '-' +file.originalname)
   }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage: storage })
 
 const getAllActivities = async (req, res, next) => {
   const activities = await Activities.find();
@@ -30,10 +32,13 @@ const createActivity = async (req, res, next) => {
   const user = await User.findOne({
     "username": req.body.username,
   });
+  console.log(req.body);
   try {
+    upload.single('image');
     const newActivity = new Activities({
       img: {
-        data: req.files,
+        name: req.body.img.name,
+        data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.body.img.name)),
         contentType: 'image/png',
       },
       activity_id: uuidv4(),
