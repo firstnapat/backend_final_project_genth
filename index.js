@@ -1,6 +1,6 @@
 const app = require("./api/index");
 const mongoose = require('mongoose');
-const config = require('./config');
+const config = require('./configs/config');
 
 if (config.isVercel) {
   app.use(async (req, res, next) => {
