@@ -6,8 +6,6 @@ const Activities = require("../Models/activitiesModel");
 
 const activitiesController = require("../Controllers/activitiesController");
 
-const fileUploader = require('../configs/cloudinary.config.js');
-
 activityRoutes.param("activity_id", async (req, res, next, activity_id) => {
   const activity = await Activities.findOne({
     activity_id: activity_id,
@@ -26,7 +24,7 @@ activityRoutes.get("/", activitiesController.getAllActivities);
 
 activityRoutes.get("/:activity_id", activitiesController.getActivityById);
 
-activityRoutes.post("/", fileUploader.single('file'), activitiesController.createActivity);
+activityRoutes.post("/", activitiesController.createActivity);
 
 activityRoutes.put("/:activity_id", activitiesController.editActivityById);
 

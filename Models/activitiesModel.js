@@ -6,7 +6,8 @@ const activitiesSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    data: Buffer,
+    id: String,
+    url: String,
     contentType: String
   },
   activity_id: {
