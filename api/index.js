@@ -3,7 +3,11 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const config = require("../config");
+const config = require("../configs/config");
+
+app.use(express.static('public'));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -30,7 +34,7 @@ app.use(bodyParser.json());
 // CORS
 app.use(
   cors({
-    origin: "*",
+    origin: "['http://127.0.0.1:5173/', 'https://immifit.vercel.app/']",
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 );

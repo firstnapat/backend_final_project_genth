@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
 const activitiesSchema = new mongoose.Schema({
-  img:
-  {
-    data: Buffer,
+  img: {
+    name: {
+      type: String,
+      required: true,
+    },
+    id: String,
+    url: String,
     contentType: String
   },
   activity_id: {
