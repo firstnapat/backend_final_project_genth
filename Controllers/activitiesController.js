@@ -12,6 +12,13 @@ const getActivityById = async (req, res, next) => {
   res.send(req.activity);
 };
 
+const getActivityByUsername = async (req, res, next) => {
+  const activity = await Activities.find({
+    username: req.params.username,
+  });
+  res.send(activity);
+};
+
 const User = require("../Models/userModel");
 
 const createActivity = async (req, res, next) => {
@@ -68,6 +75,7 @@ const removeActivityById = async (req, res, next) => {
 module.exports = {
   getAllActivities,
   getActivityById,
+  getActivityByUsername,
   createActivity,
   editActivityById,
   removeActivityById,

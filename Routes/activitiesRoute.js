@@ -22,6 +22,8 @@ activityRoutes.param("activity_id", async (req, res, next, activity_id) => {
 
 activityRoutes.get("/", activitiesController.getAllActivities);
 
+activityRoutes.get("/:username", activitiesController.getActivityByUsername);
+
 activityRoutes.get("/:activity_id", activitiesController.getActivityById);
 
 activityRoutes.post("/", activitiesController.createActivity);
