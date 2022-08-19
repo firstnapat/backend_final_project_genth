@@ -10,6 +10,16 @@ const createUser = async (req, res, next) => {
   res.send(newUser);
 };
 
+const getAllUsers = async (req, res, next) => {
+  const user = await User.find();
+
+  if (!user) {
+    return res.status(404).send({ message: "User not found" });
+  }
+
+  res.send(user);
+};
+
 const getUserById = async (req, res, next) => {
   const { user_id } = req.params;
 
@@ -24,5 +34,6 @@ const getUserById = async (req, res, next) => {
 
 module.exports = {
   createUser,
+  getAllUsers,
   getUserById,
 };
