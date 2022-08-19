@@ -4,11 +4,14 @@ const userSchema = new mongoose.Schema({
   user_id: {
     type: String,
   },
-  name: {
+  username: {
     required: true,
     type: String,
+    unique: true,
+    trim: true,
+    minlength: 3,
   },
-  username: {
+  email: {
     required: true,
     type: String,
     unique: true,
