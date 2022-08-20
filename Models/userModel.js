@@ -30,8 +30,8 @@ const userSchema = new mongoose.Schema(
     password: {
       required: true,
       type: String,
-      select: false,
     },
+    refreshToken: String
   },
   {
     timestamps: true,

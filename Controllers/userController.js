@@ -4,12 +4,16 @@ const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require("uuid");
 
 const createUser = async (req, res, next) => {
-  const { user, password } = req.body;
-  if (!user || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
+  console.log(req.body)
+  const { username, email, password } = req.body;
+  if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
 
   // check for duplicate usernames in the db
-  const duplicate = await User.findOne({ username: user }).exec();
-  if (duplicate) return res.sendStatus(409); //Conflict 
+  const duplicateUser = await User.findOne({ username: username }).exec();
+  if (duplicateUser) return res.sendStatus(409); //Conflict 
+
+  const duplicateEmail = await User.findOne({ email: email }).exec();
+  if (duplicateEmail) return res.sendStatus(409); //Conflict 
 
   try {
         //encrypt the password
@@ -17,13 +21,14 @@ const createUser = async (req, res, next) => {
 
         //create and store the new user
         const result = await User.create({
-            "username": user,
+            "username": username,
+            "email": email,
             "password": hashedPwd
         });
 
         console.log(result);
 
-        res.status(201).json({ 'success': `New user ${user} created!` });
+        res.status(201).json({ 'success': `New user ${username} created!` });
     } catch (err) {
         res.status(500).json({ 'message': err.message });
     }
