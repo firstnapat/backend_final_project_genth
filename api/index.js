@@ -48,4 +48,8 @@ app.use("/activities", activityRoutes);
 const userRoutes = require("../Routes/userRoute");
 app.use("/users", userRoutes);
 
+// /auth
+const authRoutes = require("../Routes/authRoute");
+app.use("/auth", authRoutes);
+
 module.exports = app;
