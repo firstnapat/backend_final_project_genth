@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 const createUser = async (req, res, next) => {
   console.log(req.body)
   const { username, email, password } = req.body;
-  if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
+  if (!username || !email || !password) return res.status(400).json({ 'message': 'Username and password are required.' });
 
   // check for duplicate usernames in the db
   const duplicateUser = await User.findOne({ username: username }).exec();
