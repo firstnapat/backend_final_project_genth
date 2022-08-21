@@ -1,6 +1,7 @@
 const User = require("../Models/userModel");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const config = require("../configs/config");
 
 const handleLogin = async (req, res) => {
     const { username, password } = req.body;
@@ -21,12 +22,12 @@ const handleLogin = async (req, res) => {
                     "roles": roles
                 }
             },
-            process.env.ACCESS_TOKEN_SECRET,
+            config.accessTokenSecret,
             { expiresIn: '10s' }
         );
         const refreshToken = jwt.sign(
             { "username": foundUser.username },
-            process.env.REFRESH_TOKEN_SECRET,
+            config.refreshTokenSecret,
             { expiresIn: '1d' }
         );
         // Saving refreshToken with current user

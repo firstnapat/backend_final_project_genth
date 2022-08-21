@@ -11,4 +11,6 @@ module.exports = {
     w: "majority",
   },
   isVercel: process.env.IS_VERCEL || false,
+  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+  refreshTokenSecret: process.env.ACCESS_TOKEN_SECRET
 };
