@@ -17,13 +17,12 @@ if (config.isVercel) {
   });
 }
 
-const corsOptions ={
-  origin: '*', 
-  credentials:true,            
-  //access-control-allow-credentials:true
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+);
 
 app.listen(config.port , () => {
   console.log("Express server listening on port " + config.port);

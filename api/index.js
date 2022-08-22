@@ -32,13 +32,12 @@ if (config.isVercel) {
 // Body parser to parse json in request body for us
 app.use(bodyParser.json());
 // CORS
-const corsOptions ={
-  origin: '*', 
-  credentials:true,            
-  //access-control-allow-credentials:true
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+);
 
 // /activities
 const activityRoutes = require("../Routes/activitiesRoute");
@@ -58,6 +57,6 @@ app.use("/refresh", refreshTokenRoutes);
 
 // /logout
 const logoutRoutes = require("../Routes/logoutRoute");
-app.use("/auth", logoutRoutes);
+app.use("/logout", logoutRoutes);
 
 module.exports = app;
