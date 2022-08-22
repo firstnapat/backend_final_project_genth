@@ -33,7 +33,7 @@ if (config.isVercel) {
 app.use(bodyParser.json());
 // CORS
 const corsOptions ={
-  origin: ['http://127.0.0.1:5173', 'https://immifit.vercel.app/'], 
+  origin: '*', 
   credentials:true,            
   //access-control-allow-credentials:true
   optionSuccessStatus:200
