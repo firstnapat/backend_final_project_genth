@@ -52,4 +52,12 @@ app.use("/users", userRoutes);
 const authRoutes = require("../Routes/authRoute");
 app.use("/auth", authRoutes);
 
+// /refresh
+const refreshTokenRoutes = require("../Routes/refreshTokenRoute");
+app.use("/refresh", refreshTokenRoutes);
+
+// /logout
+const logoutRoutes = require("../Routes/logoutRoute");
+app.use("/auth", logoutRoutes);
+
 module.exports = app;
