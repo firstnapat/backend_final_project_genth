@@ -19,7 +19,7 @@ if (config.isVercel) {
 
 app.use(
   cors({
-    origin: '*',
+    origin: ['http://127.0.0.1:5173', 'http://127.0.0.1:5174', 'https://immifit.vercel.app/'],
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 );
