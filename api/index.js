@@ -34,13 +34,6 @@ app.use(bodyParser.json());
 // CORS
 app.use(cors());
 
-app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', ['*']);
-  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.append('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
-
 // /activities
 const activityRoutes = require("../Routes/activitiesRoute");
 app.use("/activities", activityRoutes);
