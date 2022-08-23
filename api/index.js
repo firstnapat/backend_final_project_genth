@@ -32,12 +32,7 @@ if (config.isVercel) {
 // Body parser to parse json in request body for us
 app.use(bodyParser.json());
 // CORS
-app.use(
-  cors({
-    origin: ['http://127.0.0.1:5173', 'http://127.0.0.1:5174', 'https://immifit.vercel.app/'],
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  })
-);
+app.use(cors());
 
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['*']);
