@@ -44,6 +44,7 @@ const createActivity = async (req, res, next) => {
       ...req.body,
     });
     await newActivity.save();
+    res.status(200).send(newActivity)
   } catch (error) {
     res.status(400).send(error);
     console.log(error);
