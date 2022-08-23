@@ -1,6 +1,7 @@
 const app = require("./api/index");
 const mongoose = require('mongoose');
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const config = require('./configs/config');
 
 if (config.isVercel) {
@@ -17,7 +18,13 @@ if (config.isVercel) {
   });
 }
 
-app.use(cors());
+app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+);
 
 app.listen(config.port , () => {
   console.log("Express server listening on port " + config.port);

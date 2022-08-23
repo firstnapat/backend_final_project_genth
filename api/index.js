@@ -32,7 +32,13 @@ if (config.isVercel) {
 // Body parser to parse json in request body for us
 app.use(bodyParser.json());
 // CORS
-app.use(cors());
+app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  })
+);
 
 // /activities
 const activityRoutes = require("../Routes/activitiesRoute");
