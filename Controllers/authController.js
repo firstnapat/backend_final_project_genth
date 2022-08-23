@@ -15,6 +15,7 @@ const handleLogin = async (req, res) => {
     if (match) {
         const roles = Object.values(foundUser.roles).filter(Boolean);
         // create JWTs
+        const user_id = foundUser.user_id;
         const accessToken = jwt.sign(
             {
                 "UserInfo": {
@@ -40,7 +41,7 @@ const handleLogin = async (req, res) => {
         res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
 
         // Send authorization roles and access token to user
-        res.json({ roles, accessToken });
+        res.json({ roles, user_id, accessToken });
 
     } else {
         res.sendStatus(401);
