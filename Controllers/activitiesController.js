@@ -34,8 +34,8 @@ const createActivity = async (req, res, next) => {
     const newActivity = new Activities({
       img: {
         name: req.body.img.name,
-        id: '',
-        url: '',
+        id: uploadResponse.asset_id,
+        url: uploadResponse.secure_url,
         contentType: req.body.img.contentType,
       },
       activity_id: uuidv4(),
@@ -43,8 +43,6 @@ const createActivity = async (req, res, next) => {
       user_id: user.user_id,
       ...req.body,
     });
-    newActivity.img.id = uploadResponse.asset_id;
-    newActivity.img.url = uploadResponse.secure_url;
     await newActivity.save();
   } catch (error) {
     res.status(400).send(error);
