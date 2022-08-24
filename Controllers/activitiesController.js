@@ -73,16 +73,17 @@ const editActivityById = async (req, res, next) => {
 
   const activity = await Activities.findOne({ activity_id });
   try {
-    await activity.updateOne({
+    const update = {
       img: {
         name: req.body.img.name,
         id: uploadResponse.asset_id,
         url: uploadResponse.secure_url,
         contentType: req.body.img.contentType,
       },
-      ...req.body,
-    })
-    res.status(200).send(newActivity)
+      ...req.body
+    }
+    await activity.updateOne(update);
+    res.status(200).send(activity)
   } catch (error) {
     res.status(400).send(error);
     console.log(error);
