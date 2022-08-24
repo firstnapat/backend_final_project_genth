@@ -80,7 +80,7 @@ const editActivityById = async (req, res, next) => {
         url: '',
         contentType: req.body.img.contentType,
       },
-      activity_id: uuidv4(),
+      activity_id: req.param.activity_id,
       username: user.username,
       user_id: user.user_id,
       ...req.body,
