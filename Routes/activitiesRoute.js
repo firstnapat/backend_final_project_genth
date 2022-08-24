@@ -30,6 +30,7 @@ activityRoutes.post("/", activitiesController.createActivity);
 
 activityRoutes.put("/:activity_id", activitiesController.editActivityById);
 
+// /activities/
 activityRoutes.delete("/:activity_id", activitiesController.removeActivityById);
 
 module.exports = activityRoutes;

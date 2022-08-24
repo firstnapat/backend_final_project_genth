@@ -31,7 +31,27 @@ const userSchema = new mongoose.Schema(
       required: true,
       type: String,
     },
-    refreshToken: String
+    refreshToken: String,
+    profile: {
+      about: {
+        type: String
+      },
+      gender: {
+        type: String
+      },
+      age: {
+        type: Number
+      },
+      height: {
+        type: Number
+      },
+      weight: {
+        type: Number
+      },
+      bmi: {
+        type: Number
+      },
+    }
   },
   {
     timestamps: true,
