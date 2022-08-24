@@ -9,9 +9,14 @@ const getAllActivities = async (req, res, next) => {
 };
 
 const getActivityById = async (req, res, next) => {
-  const activity = await Activities.findOne({
-    activity_id: req.params.activity_id
-  });
+  const { activity_id } = req.params;
+  
+  const activity = await Activities.findOne({ activity_id });
+
+  if (!activity) {
+    return res.status(404).send({ message: "Activity not found" });
+  }
+
   res.send(activity);
 };
 
@@ -23,6 +28,7 @@ const getActivityByUsername = async (req, res, next) => {
 };
 
 const User = require("../Models/userModel");
+const { request } = require("express");
 
 const createActivity = async (req, res, next) => {
   const user = await User.findOne({
