@@ -66,13 +66,13 @@ const createActivity = async (req, res, next) => {
 const editActivityById = async (req, res, next) => {
   const { activity_id } = req.params;
 
-  const fileStr = req.body.img.data;
-  const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-    upload_preset: "immifit",
-  });
-
   const activity = await Activities.findOne({ activity_id });
   try {
+    const fileStr = req.body.img.data;
+    const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+      upload_preset: "immifit",
+    });
+
     const update = {
       img: {
         name: req.body.img.name,
@@ -82,6 +82,7 @@ const editActivityById = async (req, res, next) => {
       },
       ...req.body
     }
+    
     await activity.updateOne(update);
     res.status(200).send(activity)
   } catch (error) {
