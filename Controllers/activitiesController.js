@@ -66,18 +66,20 @@ const createActivity = async (req, res, next) => {
 const editActivityById = async (req, res, next) => {
   const { activity_id } = req.params;
 
+  const fileStr = req.body.img.data;
+  const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+    upload_preset: "immifit",
+  });
+
   const activity = await Activities.findOne({ activity_id });
   try {
-    await activity.update({
+    await activity.updateOne({
       img: {
         name: req.body.img.name,
-        id: '',
-        url: '',
+        id: uploadResponse.asset_id,
+        url: uploadResponse.secure_url,
         contentType: req.body.img.contentType,
       },
-      activity_id: req.param.activity_id,
-      username: user.username,
-      user_id: user.user_id,
       ...req.body,
     })
     res.status(200).send(newActivity)
