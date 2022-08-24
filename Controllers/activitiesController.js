@@ -5,19 +5,20 @@ const { v4: uuidv4 } = require("uuid");
 
 const getAllActivities = async (req, res, next) => {
   const activities = await Activities.find();
+  
   res.send(activities);
 };
 
 const getActivityById = async (req, res, next) => {
   const { activity_id } = req.params;
-  
+  console.log(activity_id);
   const activity = await Activities.findOne({ activity_id });
-
+  console.log(activity)
   if (!activity) {
     return res.status(404).send({ message: "Activity not found" });
   }
 
-  res.send(activity);
+  res.status(200).send(activity);
 };
 
 const getActivityByUsername = async (req, res, next) => {
@@ -77,6 +78,14 @@ const editActivityById = async (req, res, next) => {
 };
 
 const removeActivityById = async (req, res, next) => {
+  const { activity_id } = req.params;
+  console.log(activity_id);
+  const activity = await Activities.findOne({ activity_id });
+  console.log(activity)
+  if (!activity) {
+    return res.status(404).send({ message: "Activity not found" });
+  }
+
   await req.activity.remove();
 
   res.status(204).send();
