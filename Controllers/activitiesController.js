@@ -87,7 +87,7 @@ const editActivityById = async (req, res, next) => {
     });
     newActivity.img.id = uploadResponse.asset_id;
     newActivity.img.url = uploadResponse.secure_url;
-    await newActivity.save();
+    await newActivity.update();
     res.status(200).send(newActivity)
   } catch (error) {
     res.status(400).send(error);
