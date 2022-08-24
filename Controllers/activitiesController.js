@@ -9,7 +9,10 @@ const getAllActivities = async (req, res, next) => {
 };
 
 const getActivityById = async (req, res, next) => {
-  res.send(req.activity);
+  const activity = await Activities.findOne({
+    activity_id: req.params.activity_id
+  });
+  res.send(activity);
 };
 
 const getActivityByUsername = async (req, res, next) => {
