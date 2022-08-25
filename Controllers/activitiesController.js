@@ -28,6 +28,21 @@ const getActivityByUsername = async (req, res, next) => {
   res.send(activity);
 };
 
+const getActivityByType = async (req, res, next) => {
+  const { username, type } = req.params;
+
+  const activity = await Activities.find({ 
+    username: username, 
+    activity_type: type 
+  });
+
+  if (!activity) {
+    return res.status(404).send({ message: "Activity not found" });
+  }
+
+  res.status(200).send(activity);
+};
+
 const User = require("../Models/userModel");
 const { request } = require("express");
 
@@ -113,6 +128,7 @@ module.exports = {
   getAllActivities,
   getActivityById,
   getActivityByUsername,
+  getActivityByType,
   createActivity,
   editActivityById,
   removeActivityById,

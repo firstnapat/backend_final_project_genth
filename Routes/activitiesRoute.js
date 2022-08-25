@@ -26,6 +26,8 @@ activityRoutes.get("/:username", activitiesController.getActivityByUsername);
 
 activityRoutes.get("/byid/:activity_id", activitiesController.getActivityById);
 
+activityRoutes.get("/bytype/:username/:type", activitiesController.getActivityByType);
+
 activityRoutes.post("/", activitiesController.createActivity);
 
 activityRoutes.put("/:activity_id", activitiesController.editActivityById);
